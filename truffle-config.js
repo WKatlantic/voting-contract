@@ -13,13 +13,9 @@ module.exports = {
     testnet: {
       provider: () => new HDWalletProvider(mnemonic, `wss://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
-      confirmations: 1,
-      timeoutBlocks: 50000,
-      networkCheckTimeout: 99999,
-      skipDryRun: false,
-      gas: 5000000,
-      gasPrice: 40000000000,
-      websocket: true,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
     },
     
     bsc: {
