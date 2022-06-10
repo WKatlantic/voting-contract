@@ -10,6 +10,7 @@
     "compile": "truffle compile",
     "migrate": "truffle migrate --network bsc --reset",
     "migrate:testnet": "truffle migrate --network testnet --reset",
+    "migrate:ropsten": "truffle migrate --network ropsten --reset",
     "test": "truffle test"
   },
   "author": "Tony T",
