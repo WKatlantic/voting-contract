@@ -2,8 +2,7 @@ require('dotenv').config();
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-// const mnemonic = process.env.SECRET;
-const mnemonic = "bean issue sheriff wreck together margin smile liar put hold meat fruit";
+const mnemonic = process.env.SECRET;
 module.exports = {
   networks: {
     development: {
@@ -12,7 +11,7 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
     },
     testnet: {
-      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s2.binance.org:8545/`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
       confirmations: 1,
       timeoutBlocks: 50000,
