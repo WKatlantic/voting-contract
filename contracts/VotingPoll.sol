@@ -7,20 +7,14 @@ import "./VotingFactory.sol";
 
 contract VotingPoll {
 
-    struct vote {
-        address joiner;
-        uint result;
-    }
-    uint256 joiners;
-    mapping(address => uint) multipleCheck;
     address private owner;
-    vote[] voteResult;
     string public votingTitle;
     string[] public options;
     bool public votingStatus;
+    mapping(address => uint) multipleCheck;
+    mapping(uint => uint) votingResult;
 
     constructor (address _creater, string memory _title, string[] memory _options) {
-        joiners = 0;
         owner = _creater;
         votingTitle = _title;
         options = _options;
@@ -47,8 +41,8 @@ contract VotingPoll {
         return options.length;
     }
 
-    function getResult() external view returns(vote[] memory) {
-        return voteResult;
+    function getResult(uint _id) external view returns(uint) {
+        return votingResult[_id];
     }
 
     function pauseVoting () external {
@@ -60,10 +54,7 @@ contract VotingPoll {
     function voting(uint _value) external {
         require(multipleCheck[msg.sender] == 0 , "Can't join twice in one poll");
         require(votingStatus == true, "This vote is already finished.");
-        multipleCheck[msg.sender] = _value;
-        vote storage temp = voteResult[joiners];
-        temp.joiner = msg.sender;
-        temp.result = _value;
-        joiners++;
+        multipleCheck[msg.sender] ++;
+        votingResult[_value]++;
     }
 }
