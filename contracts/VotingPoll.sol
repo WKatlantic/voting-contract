@@ -45,6 +45,10 @@ contract VotingPoll {
         return votingResult[_id];
     }
 
+    function getMultiCheck(address _from) external view returns(uint) {
+        return multipleCheck[_from];
+    }
+
     function pauseVoting () external {
         require(msg.sender == owner, "You're not owner!");
         require(votingStatus == true, "This voting was finished before.");
