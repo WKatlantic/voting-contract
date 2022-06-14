@@ -8,6 +8,13 @@ contract VotingFactory {
     address[] public allPolls;
     string[] public titles;
     uint pollCounts;
+
+    struct testItem {
+        uint id;
+        uint amount;
+    }
+
+    mapping (address => testItem[]) testList;
     
     event PollCreated(address deployer, address addr);
 
@@ -33,5 +40,17 @@ contract VotingFactory {
 
     function getPollsCount () external view returns(uint256 cnt) {
         return allPolls.length;
+    }
+
+    function inputTest (address _from, testItem[] memory _options) external {
+        testItem[] storage temp = testList[_from];
+        for(uint i = 0; i < _options.length; i++) {
+            temp[i].id = _options[i].id;
+            temp[i].amount = _options[i].amount;
+        }
+    }
+
+    function getTestList (address _from) external returns(testItem[] memory){
+        return testList[_from];
     }
 }
